@@ -17,7 +17,7 @@ contract Lotto {
         return uint(keccak256(block.difficulty, block.timestamp, players));
     }
 
-    function sorteio() public isCreator{
+    function raffle() public isCreator{
         uint indice = random() % players.length;
         players[indice].transfer(this.balance);
         players = new address[](0);
