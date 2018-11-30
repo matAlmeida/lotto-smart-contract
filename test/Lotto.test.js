@@ -39,6 +39,11 @@ describe('Lotto', () => {
     expect(retrivedCreator).to.equal(creator);
   });
 
+  it('Get Player', () => {
+    const players = await lotto.methods.getPlayers().call();
+    expect(players).to.equal([]);
+  });
+
   it('Is playable!', async () => {
     const player = accounts[0];
     const playersBeforePlay = await lotto.methods.getPlayers().call();
