@@ -40,14 +40,16 @@ describe('Lotto', () => {
   });
 
   it('Is playable', async () => {
+    const player = accounts[0];
     const playersBeforePlay = await lotto.methods.getPlayers().call();
     await lotto.methods.play().send({
-      from: accounts[0],
+      from: player,
       value: web3.utils.toWei('0.1', 'ether')
     });
     const playersAfterPlay = await lotto.methods.getPlayers().call();
 
     expect(playersAfterPlay.length).to.be.greaterThan(playersBeforePlay.length);
     expect(playersAfterPlay.length).to.equal(1);
+    expect(playersAfterPlay[0]).to.equal(player);
   });
 });
