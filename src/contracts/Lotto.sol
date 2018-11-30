@@ -9,7 +9,7 @@ contract Lotto {
     }
 
     function play() public payable{
-        require(msg.value > 0.1 ether);
+        require(msg.value > 0.09 ether);
         players.push(msg.sender);
     }
 
