@@ -38,4 +38,16 @@ describe('Lotto', () => {
 
     expect(retrivedCreator).to.equal(creator);
   });
+
+  it('Is playable', async () => {
+    const playersBeforePlay = await lotto.methods.getPlayers().call();
+    await lotto.methods.play().send({
+      from: accounts[0],
+      value: web3.utils.toWei('0.1', 'ether')
+    });
+    const playersAfterPlay = await lotto.methods.getPlayers().call();
+
+    expect(playersAfterPlay.length).to.be.greaterThan(playersBeforePlay.length);
+    expect(playersAfterPlay.length).to.equal(1);
+  });
 });
